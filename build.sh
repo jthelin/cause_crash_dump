@@ -18,4 +18,4 @@ echo "-- Generate cmake build scripts"
 cmake ..
 
 echo "-- Run cmake build"
-cmake --build .
+cmake --build . --target package

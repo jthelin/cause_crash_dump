@@ -23,7 +23,14 @@ ls -lhR .
 
 echo "-- Run application"
 echo "-- OSTYPE = ${OSTYPE}"
-if [[ "${OSTYPE}" == "Windows_NT" ]]; then
+if [[
+  # POSIX compatibility layer and Linux environment emulation for Windows
+  "$OSTYPE" == "cygwin"
+  ||
+  # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+  "$OSTYPE" == "msys"
+  ]]
+then
   exe_file=$( ls ./src/*/cause_crash_dump.exe )
 else
   exe_file=$( ls ./src/cause_crash_dump )

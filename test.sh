@@ -16,10 +16,17 @@ echo "-- Increase soft-limit for core dump file size"
 ulimit -c unlimited
 
 ulimit -a
-# env | sort | grep -i -v PAT | grep -i -v TOKEN | grep -i -v API_KEY
 
-# ls -lh . src
+env | sort | grep -i -v PAT | grep -i -v TOKEN | grep -i -v API_KEY
 
-echo "-- Run application"
-./src/cause_crash_dump \
-  || echo "-- Application failed as expected"
+ls -lhR .
+
+exe_file=$(realpath ./src/cause_crash_dump*)
+echo "-- Run application ${exe_file}"
+if [[ -x ${exe_file} ]]; then
+  ${exe_file} \
+    || echo "-- Application failed as expected"
+else
+  echo "-- ERROR: Cannot find exe file: ${exe_file}"
+  echo 1
+fi

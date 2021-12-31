@@ -7,12 +7,19 @@ on:
 jobs:
   cmake-build:
 
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
       - name: cmake build
         run: ./build.sh
+        shell: bash
       - name: cmake test
         run: ./test.sh
+        shell: bash

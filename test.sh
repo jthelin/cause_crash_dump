@@ -21,8 +21,13 @@ env | sort | grep -i -v PAT | grep -i -v TOKEN | grep -i -v API_KEY
 
 ls -lhR .
 
-exe_file=$(realpath ./src/cause_crash_dump*)
-echo "-- Run application ${exe_file}"
+echo "-- Run application"
+if [[ "${OSTYPE}" == "Windows_NT" ]]; then
+  exe_file=$( ls ./src/*/cause_crash_dump.exe )
+else
+  exe_file=$( ls ./src/cause_crash_dump )
+fi
+echo "-- OSTYPE = ${OSTYPE} exe_file = ${exe_file}"
 if [[ -x ${exe_file} ]]; then
   ${exe_file} \
     || echo "-- Application failed as expected"

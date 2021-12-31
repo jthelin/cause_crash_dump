@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  cmake-build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: cmake build
+        run: ./build.sh
+      - name: cmake test
+        run: ./test.sh

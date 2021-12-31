@@ -19,5 +19,7 @@ jobs:
 
       - name: cmake build
         run: ./build.sh
+        shell: bash
       - name: cmake test
         run: ./test.sh
+        shell: bash

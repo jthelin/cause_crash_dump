@@ -17,11 +17,12 @@ ulimit -c unlimited
 
 ulimit -a
 
-env | sort | grep -i -v PAT | grep -i -v TOKEN | grep -i -v API_KEY
+# env | sort | grep -i -v PAT | grep -i -v TOKEN | grep -i -v API_KEY
 
-ls -lhR .
+# ls -lhR .
 
 echo "-- Run application"
+uname
 echo "-- OSTYPE = ${OSTYPE}"
 if [[
   # POSIX compatibility layer and Linux environment emulation for Windows

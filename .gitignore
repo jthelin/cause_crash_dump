@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Visual Studio working directories
+/.vs
+
 # cmake build directories
 cmake-build*/
 out/
